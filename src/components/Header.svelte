@@ -3,8 +3,8 @@
   const instagram = 'statics/img/instagram-new.png';
 </script>
 
-<header>
-  <nav>
+<header class="container-padding">
+  <nav class="container">
     <div class="title-page">
       <a href="/" rel="noopener noreferrer" title="Home page">
         <strong>Svelte</strong>
@@ -30,19 +30,10 @@
 
 <style lang="scss">
   header {
-    padding-top: 20px;
-    padding-bottom: 20px;
     -webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,.75);
     -moz-box-shadow: 0 0 20px 0 rgba(0,0,0,.75);
     box-shadow: 0 0 20px 0 rgba(0,0,0,.75);
-    @media(max-width: 1024px) {
-      padding-left: 15px;
-      padding-right: 15px;
-    }
     nav {
-      width: 1024px;
-      max-width: 100%;
-      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
