@@ -1,10 +1,11 @@
 <script>
-	
+
 </script>
 <div>
   olá home!
+  <span>sss</span>
 </div>
 
-<style>
+<style lang="scss">
 
 </style>
