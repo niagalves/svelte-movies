@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import API_URL from '../api/api';
+  import get from '../service/movies.services';
   import Pagination from './Pagination.svelte';
   import Loader from './Loader.svelte';
 
@@ -12,7 +12,7 @@
   function initMount() {
     onMount(async () => {
       loader = true;
-      data = await fetch(`${API_URL(page)}`).then(x => x.json());
+      data = await get(`&page=${page}`, 'all');
       items = data.results;
       if (data) {
         loader = false;
@@ -27,7 +27,7 @@
     } else {
       page -= 1;
     }
-    data = await fetch(`${API_URL(page)}`).then(x => x.json());
+    data = await get(`&page=${page}`, 'all');
     items = data.results;
     window.scrollTo(0, 0);
     if (data) {
@@ -44,8 +44,8 @@
     {#if data}
       {#each items as item}
         <div class="cards-details">
-          <a href={item.id} title={item.original_title}>
-            <img src={`http://image.tmdb.org/t/p/w1280//${item.poster_path}`} alt={item.original_title} />
+          <a href={`/${item.id}`} title={item.original_title}>
+            <img src={`https://image.tmdb.org/t/p/w1280//${item.poster_path}`} alt={item.original_title} />
           </a>
         </div>
     	{/each}
@@ -78,9 +78,11 @@
         }
         @media(max-width: 1024px) {
           width: 250px;
+          height: 380px;
         }
         @media(max-width: 768px) {
           width: 180px;
+          height: 280px;
         }
       }
     }

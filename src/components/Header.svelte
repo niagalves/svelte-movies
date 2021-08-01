@@ -1,15 +1,20 @@
 <script>
   const github = 'statics/img/github.png';
   const instagram = 'statics/img/instagram-new.png';
+
+  function redirect() {
+    window.location.href = '/';
+  };
+
 </script>
 
 <header class="container-padding">
   <nav class="container">
     <div class="title-page">
-      <a href="/" rel="noopener noreferrer" title="Home page">
+      <span href="" on:click="{redirect}" title="Home page">
         <strong>Svelte</strong>
         <span>Movies</span>
-      </a>
+      </span>
     </div>
     <div>
       <ul>
@@ -41,7 +46,8 @@
       .title-page {
         font-weight: var(--is-600);
         font-size: 25px;
-        a {
+        span {
+          outline: none;
           text-decoration: none;
           cursor: pointer;
           strong {

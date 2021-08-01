@@ -10,7 +10,7 @@
   </div>
 </section>
 
-<style lang="scss">
+<style>
   .home {
     padding-top: 30px;
   }
