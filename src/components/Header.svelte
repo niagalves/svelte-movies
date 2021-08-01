@@ -11,7 +11,7 @@
 <header class="container-padding">
   <nav class="container">
     <div class="title-page">
-      <span href="" on:click="{redirect}" title="Home page">
+      <span on:click="{redirect}" title="Home page">
         <strong>Svelte</strong>
         <span>Movies</span>
       </span>

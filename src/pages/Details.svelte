@@ -14,7 +14,7 @@
   function renderBg(id) {
     body.style.backgroundRepeat = 'no-repeat';
     body.style.backgroundSize = 'cover';
-    body.style.backgroundImage = `linear-gradient(to right, rgba(19, 38, 47, 0.925) 0%, rgba(9, 28, 37, 0.925) 100%), ${id && (`url(http://image.tmdb.org/t/p/w1280//${id}`)})`;
+    body.style.backgroundImage = `linear-gradient(to right, rgba(19, 38, 47, 0.925) 0%, rgba(9, 28, 37, 0.925) 100%), ${id !== null ? `url(http://image.tmdb.org/t/p/w1280//${id}` : 'https://via.placeholder.com/1280x720'})`;
     body.style.height = '100vh';
     body.style.backgroundPosition = 'top';
   }
@@ -45,7 +45,7 @@
       <Search />
       <div class="box-details">
         <div>
-          <img src={`https://image.tmdb.org/t/p/w1280//${item.poster_path}`} alt={item.title} />
+          <img src={item.poster_path ? `https://image.tmdb.org/t/p/w1280/${item.poster_path}` : 'https://via.placeholder.com/900'} alt={item.title} />
         </div>
         <div class="desc">
           <h1>{item.title}</h1>
