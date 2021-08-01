@@ -1,33 +1,58 @@
 <script>
-import Pagination from './Pagination.svelte';
+  import { onMount } from 'svelte';
+  import API_URL from '../api/api';
+  import Pagination from './Pagination.svelte';
+  import Loader from './Loader.svelte';
 
+  let page = 1;
+  let data;
+  let items;
+  let loader = false;
+
+  function initMount() {
+    onMount(async () => {
+      loader = true;
+      data = await fetch(`${API_URL(page)}`).then(x => x.json());
+      items = data.results;
+      if (data) {
+        loader = false;
+      }
+	  });
+  }
+
+  async function updatePage(param) {
+    loader = true;
+    if (param === 'next') {
+      page += 1;
+    } else {
+      page -= 1;
+    }
+    data = await fetch(`${API_URL(page)}`).then(x => x.json());
+    items = data.results;
+    window.scrollTo(0, 0);
+    if (data) {
+      loader = false;
+    }
+  }
+
+  initMount();
 </script>
 
+<Loader loader={loader} />
 <div class="cards">
   <div class="cards-list">
-    <div class="cards-details">
-      <a href="/" title="titulo do filme">
-        <img src="http://image.tmdb.org/t/p/w1280//7WsyChQLEftFiDOVTGkv3hFpyyt.jpg" alt="titulo do filme" />
-      </a>
-    </div>
-    <div class="cards-details">
-      <a href="/" title="titulo do filme">
-        <img src="http://image.tmdb.org/t/p/w1280//7WsyChQLEftFiDOVTGkv3hFpyyt.jpg" alt="titulo do filme" />
-      </a>
-    </div>
-    <div class="cards-details">
-      <a href="/" title="titulo do filme">
-        <img src="http://image.tmdb.org/t/p/w1280//7WsyChQLEftFiDOVTGkv3hFpyyt.jpg" alt="titulo do filme" />
-      </a>
-    </div>
-    <div class="cards-details">
-      <a href="/" title="titulo do filme">
-        <img src="http://image.tmdb.org/t/p/w1280//7WsyChQLEftFiDOVTGkv3hFpyyt.jpg" alt="titulo do filme" />
-      </a>
-    </div>
+    {#if data}
+      {#each items as item}
+        <div class="cards-details">
+          <a href={item.id} title={item.original_title}>
+            <img src={`http://image.tmdb.org/t/p/w1280//${item.poster_path}`} alt={item.original_title} />
+          </a>
+        </div>
+    	{/each}
+    {/if}
   </div>
 </div>
-<Pagination />
+<Pagination page={page} handlePage={updatePage} />
 
 <style lang="scss">
   .cards {
@@ -43,6 +68,9 @@ import Pagination from './Pagination.svelte';
         width: 300px;
         height: 450px;
         margin: 15px;
+        a {
+          cursor: pointer;
+        }
         img {
           max-width: 100%;
           width: 100%;

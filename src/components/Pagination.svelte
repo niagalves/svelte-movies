@@ -1,15 +1,17 @@
 <script>
+  export let handlePage;
+  export let page = 1;
 </script>
 
 <div class="pagination">
   <ul>
     <li>
-      <span>
+      <span tabindex={page <= 1 ? -1 : 1} class={page <= 1 && ('disabled')} on:click={handlePage('prev')}>
         Previous
       </span>
     </li>
     <li>
-      <span>
+      <span on:click={handlePage('next')}>
         Next
       </span>
     </li>
@@ -18,6 +20,12 @@
 
 <style lang="scss">
   .pagination {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    .disabled {
+      opacity: .2;
+      pointer-events: none;
+    }
     ul {
       display: flex;
       justify-content: flex-end;

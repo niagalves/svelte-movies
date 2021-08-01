@@ -31,8 +31,8 @@
   .search {
     .row {
       display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
+      justify-content: center;
+      align-items: center;
       input {
         width: 700px;
         font-size: 1rem;

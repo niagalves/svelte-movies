@@ -9,6 +9,10 @@
   --is-light: #ffffff;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html, body {
   font-family: 'Raleway', sans-serif;
   font-weight: var(--is-300);
