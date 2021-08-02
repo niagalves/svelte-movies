@@ -22,7 +22,7 @@
     }
 	}
 
-  function redirect(id) {
+  const redirect = (id) => {
     window.location.href = `/${id}`;
   };
 </script>

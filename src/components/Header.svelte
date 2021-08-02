@@ -2,7 +2,7 @@
   const github = 'statics/img/github.png';
   const instagram = 'statics/img/instagram-new.png';
 
-  function redirect() {
+  const redirect = () => {
     window.location.href = '/';
   };
 

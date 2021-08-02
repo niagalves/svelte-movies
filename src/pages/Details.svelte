@@ -11,7 +11,7 @@
   let item;
   let loader = false;
 
-  function renderBg(id) {
+  const renderBg = (id) => {
     body.style.backgroundRepeat = 'no-repeat';
     body.style.backgroundSize = 'cover';
     body.style.backgroundImage = `linear-gradient(to right, rgba(19, 38, 47, 0.925) 0%, rgba(9, 28, 37, 0.925) 100%), ${id !== null ? `url(http://image.tmdb.org/t/p/w1280//${id}` : 'https://via.placeholder.com/1280x720'})`;
@@ -19,7 +19,7 @@
     body.style.backgroundPosition = 'top';
   }
 
-  function initMount() {
+  const initMount = () => {
     onMount(async () => {
       if (id) {
         loader = true;

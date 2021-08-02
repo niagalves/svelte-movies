@@ -9,7 +9,7 @@
   let items;
   let loader = false;
 
-  function initMount() {
+  const initMount = () => {
     onMount(async () => {
       loader = true;
       data = await getMovies(page);
@@ -20,7 +20,7 @@
 	  });
   }
 
-  async function updatePage(param) {
+  const updatePage = async (param) => {
     loader = true;
     if (param === 'next') {
       page += 1;
