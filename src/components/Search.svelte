@@ -1,5 +1,5 @@
 <script>
-  import get from '../service/movies.services';
+  import { findMovie } from '../service/movies.services';
 
   let query = '';
   let items;
@@ -12,7 +12,7 @@
       clearTimeout(timer);
       timer = setTimeout(async () => {
         query = v;
-        data = await get(`&query=${query.toLocaleLowerCase()}`, 'find');
+        data = await findMovie(query);
         if (data.results.length === 0) {
           return error = true;
         }

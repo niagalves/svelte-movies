@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import get from '../service/movies.services';
+  import { getMovie } from '../service/movies.services';
   import Loader from '../components/Loader.svelte';
   import Search from '../components/Search.svelte';
 
@@ -23,7 +23,7 @@
     onMount(async () => {
       if (id) {
         loader = true;
-        data = await get(id, 'unique');
+        data = await getMovie(id);
         item = data;
         if (data) {
           loader = false;
